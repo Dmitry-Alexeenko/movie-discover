@@ -27,21 +27,18 @@ export const Movies = () => {
                 }
             })
         } catch (e) {
-        }
-    }, [state.selectedGenre, state.tag])
+        }}, [state.selectedGenre, state.tag])
 
     useEffect(() => {
         fetchLinks()
     }, [state.selectedGenre, state.tag])
-
-    console.log(state, "state_state_state")
 
     const clickHandler = async () => {
         try {
             const url = await insertUrlParams(urls.GET_MOVIES, state.currentPage + 1, state.tag, state.selectedGenre)
             const moviesList = await request(url)
             dispatch({
-                type: 'GET_MOVIES', payload: {
+                type: 'SHOW_MORE_MOVIES', payload: {
                     currentPage: state.currentPage + 1,
                     totalPages: moviesList.total_pages,
                     movies: [...moviesList.results]
@@ -57,7 +54,7 @@ export const Movies = () => {
 
     const selectGenreHandler = (id) => {
         dispatch({
-            type: 'GET_MOVIES', payload: {
+            type: 'SELECT_GENRE', payload: {
                 selectedGenre: id
             }
         })
@@ -97,7 +94,7 @@ export const Movies = () => {
                     type="checkbox"
                     className="filled-in"
                     checked={item.id === state.selectedGenre}
-                    onClick={() => {
+                    onChange={() => {
                         selectGenreHandler(item.id)
                     }}/>
                 <span>{item.name}</span>
@@ -112,6 +109,18 @@ export const Movies = () => {
                     <div className='movies-radio-container'>
 
                         <form action="#" className='movies-genre-container'>
+                            <div className='movies-tag-item'>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        className="filled-in"
+                                        checked={'' === state.selectedGenre}
+                                        onChange={() => {
+                                            selectGenreHandler('')
+                                        }}/>
+                                    <span>All genres</span>
+                                </label>
+                            </div>
                             {genresList}
                         </form>
 
@@ -122,7 +131,7 @@ export const Movies = () => {
                                         type="checkbox"
                                         className="filled-in"
                                         checked={state.tag === 'popularity.desc'}
-                                        onClick={() => {
+                                        onChange={() => {
                                             selectTagHandler('popularity.desc')
                                         }}/>
                                     <span>Popularity</span>
@@ -134,7 +143,7 @@ export const Movies = () => {
                                         type="checkbox"
                                         className="filled-in"
                                         checked={state.tag === 'release_date.desc'}
-                                        onClick={() => {
+                                        onChange={() => {
                                             selectTagHandler('release_date.desc')
                                         }}/>
                                     <span>Release date</span>
@@ -146,7 +155,7 @@ export const Movies = () => {
                                         type="checkbox"
                                         className="filled-in"
                                         checked={state.tag === 'vote_average.desc'}
-                                        onClick={() => {
+                                        onChange={() => {
                                             selectTagHandler('vote_average.desc')
                                         }}/>
                                     <span>Vote average</span>

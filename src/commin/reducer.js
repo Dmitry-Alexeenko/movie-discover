@@ -14,6 +14,13 @@ export function reducer(state, action) {
                 ...state,
                 currentPage: action.payload.currentPage,
                 totalPages: action.payload.totalPages,
+                movies: [...action.payload.movies],
+            }
+        case 'SHOW_MORE_MOVIES':
+            return {
+                ...state,
+                currentPage: action.payload.currentPage,
+                totalPages: action.payload.totalPages,
                 movies: [...state.movies, ...action.payload.movies],
             }
         case 'GET_GENRES':
