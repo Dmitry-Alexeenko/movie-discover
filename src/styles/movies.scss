@@ -1,0 +1,59 @@
+.h200 {
+  height: 240px;
+
+}
+
+.card-content-text {
+  height: 180px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.movies-btn {
+  text-align: center;
+}
+
+.cp {
+  cursor: pointer;
+}
+
+.p10 {
+  padding: 10px 0;
+}
+
+.m10 {
+  margin: 5px 5px;
+}
+
+.movies-radio-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.movies-genre-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  width: 80%;
+  min-width: 300px;
+  max-width: 1500px;
+  padding: 5px;
+  border: 1px solid #b2b2b2;
+  margin: 10px 0;
+}
+
+.movies-tag-item {
+  width: 150px;
+  padding: 3px 5px ;
+}
+
+.movies-tags-container {
+  min-width: 150px;
+  flex-grow: 1;
+  width: 20%;
+  border: 1px solid #b2b2b2;
+  padding: 5px;
+  margin: 10px 0;
+  margin-left: -1px;
+}
